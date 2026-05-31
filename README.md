@@ -88,10 +88,19 @@ Define toda a aparência visual e responsividade do site.
   - Centralizada com animação de transformação
   - Links de navegação com espaçamento
   - Transformações CSS para criar efeito visual
+
+- **Botão de áudio (.audio-btn)**:
+  - Botão circular (50px x 50px) posicionado na barra lateral
+  - Ícone de volume (Font Awesome)
+  - Borda com transparência que fica verde quando áudio está tocando
+  - Efeito hover: escalona e muda a cor da borda
+  - Estados: padrão (cinza/mudo) e playing (verde/tocando)
+  - Transição suave entre estados
   
 - **Animações**:
   - `fade-in`: Cria transição suave ao carregar conteúdo
   - `transform`: Anima a imagem e links ao carregarem
+  - `playing`: Muda cor para indicar áudio tocando
   
 - **Responsividade**: Design adaptável para diferentes tamanhos de tela com media queries
 
@@ -99,11 +108,12 @@ Define toda a aparência visual e responsividade do site.
 - Preto e cinza como cores principais
 - Branco para texto na barra lateral
 - Cinza (#333) para texto principal
+- Verde (#00ff00) para indicar áudio tocando
 
 ---
 
 ### **Code/options.js** - Script de Navegação e Interatividade
-Este arquivo JavaScript fornece toda a interatividade do site, especialmente a navegação entre páginas.
+Este arquivo JavaScript fornece toda a interatividade do site, especialmente a navegação entre páginas e controle de áudio.
 
 **Função principal: `navigate(url)`**
 - Recebe a URL para a qual navegar
@@ -113,11 +123,19 @@ Este arquivo JavaScript fornece toda a interatividade do site, especialmente a n
 - Redireciona o usuário para a nova página
 - Se não houver elemento com a classe correta, redireciona diretamente
 
+**Função de controle de áudio: `toggleAudio()`**
+- Ativa ou desativa a reprodução do áudio de fundo
+- Alterna entre os ícones de volume (🔊) e mudo (🔇)
+- Altera a cor do botão: verde quando tocando, cinza quando parado
+- Salva o estado da reprodução em `localStorage` para persistência
+- Permite que o usuário mantenha sua preferência ao navegar entre páginas
+
 **Função de inicialização: `window.onload`**
 - Executada quando a página finalmente carrega
-- Seleciona o elemento de conteúdo principal
-- Adiciona a classe `fade-in` para criar a animação de entrada
-- Cria uma transição visual suave ao entrar em uma página
+- Seleciona elementos de conteúdo e adiciona a classe `fade-in`
+- Recupera o estado anterior do áudio do `localStorage`
+- Se o áudio estava tocando, tenta fazer autoplay (alguns navegadores podem bloquear)
+- Atualiza o ícone e a cor do botão de áudio baseado no estado salvo
 
 **Fluxo de interação:**
 1. Usuário clica em um botão de navegação (ABOUT ME, SKILLS, PROJECTS)
@@ -125,6 +143,14 @@ Este arquivo JavaScript fornece toda a interatividade do site, especialmente a n
 3. Conteúdo atual desaparece com fade-out (300ms)
 4. Nova página é carregada
 5. Novo conteúdo aparece com fade-in ao carregar
+6. Áudio continua tocando (se estava ativo) ou permanece pausado
+
+**Interação com áudio:**
+1. Usuário clica no botão de áudio na barra lateral
+2. Chama a função `toggleAudio()`
+3. Se áudio está pausado: toca, muda ícone para volume alto, fica verde
+4. Se áudio está tocando: pausa, muda ícone para mudo, fica cinza
+5. Estado é salvo e persistido ao navegar
 
 ---
 
@@ -142,15 +168,19 @@ Armazena todos os arquivos de imagem do site.
 ---
 
 ### **Diretório Aúdios/**
-Diretório reservado para armazenar arquivos de áudio.
+Armazena arquivos de áudio que tocam em background enquanto o usuário navega pelo site.
 
-**Uso potencial:**
-- Podcasts ou explicações em áudio
-- Efeitos sonoros
-- Trilhas sonoras para portfólio
-- Apresentações em vídeo com áudio
+**Arquivos principais:**
+- `My-mind.mp3`: Trilha sonora de fundo que toca continuamente enquanto as páginas estão abertas
+  - Toca em loop infinito
+  - Pode ser ativada/desativada através do botão de controle de volume
+  - Estado é persistido ao navegar entre páginas
 
-**Status atual**: Diretório vazio, pronto para receber conteúdo
+**Funcionalidade:** 
+- O áudio toca de forma contínua e em loop enquanto o usuário está navegando
+- Um botão de controle de volume fica disponível na barra lateral
+- Ícone muda entre 🔊 (tocando) e 🔇 (pausado)
+- Preferência do usuário é salva localmente para manter o estado ao navegar
 
 ---
 

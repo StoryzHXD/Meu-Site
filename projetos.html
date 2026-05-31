@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
+  <audio id="bgAudio" loop>
+    <source src="Aúdios/My-mind.mp3" type="audio/mpeg">
+  </audio>
+
   <aside class="nav" id="sideNav">
     <aside class="profile-section fade-in">
       <img class="profile-img" src="Imagens/Icon.jpeg" alt="Foto de Perfil">
@@ -19,6 +23,10 @@
         <button onclick="navigate('conhecimentos.html')"><b>SKILLS</b></button>
         <button onclick="navigate('projetos.html')"><b>PROJECTS</b></button>
       </nav>
+
+      <button id="audioToggle" class="audio-btn" onclick="toggleAudio()" title="Toggle Audio">
+        <i class="fas fa-volume-mute"></i>
+      </button>
 
       <p>&copy; Hadrian Souza - 2026</p>
     </aside>
