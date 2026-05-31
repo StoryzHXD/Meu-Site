@@ -6,7 +6,7 @@ function redirectToAboutMe() {
     
     // Redirecionar para AboutMe após a animação de fade-out
     setTimeout(() => {
-      window.location.href = "AboutMe.html";
+      window.location.href = "Pages/AboutMe.html";
     }, 600);
   }
 }
