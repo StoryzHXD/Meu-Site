@@ -3,6 +3,129 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  /* Tela de Carregamento */
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: wait;
+    animation: fadeInLoading 0.5s ease-in;
+  }
+
+  .loading-screen.hidden {
+    animation: fadeOutLoading 0.6s ease-out forwards;
+    pointer-events: none;
+  }
+
+  .loading-container {
+    text-align: center;
+  }
+
+  .loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .loading-title {
+    font-size: 60px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #00ff00, #00ccff, #00ff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 2s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+
+  .loading-text {
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: bold;
+    animation: pulse 1.5s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .loading-animation {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .loading-animation span {
+    width: 12px;
+    height: 12px;
+    background: #00ff00;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+  }
+
+  .loading-animation span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .loading-animation span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInLoading {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOutLoading {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 204, 255, 0.2);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(0, 255, 0, 0.6), 0 0 40px rgba(0, 204, 255, 0.4);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 80%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    40% {
+      transform: translateY(-15px);
+      opacity: 1;
+    }
+  }
   
   body {
     display: flex;

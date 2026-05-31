@@ -1,11 +1,15 @@
 function navigate(url) {
   const main = document.querySelector("main");
-  if (main) {
-    main.classList.remove("fade-in");
-    setTimeout(() => window.location.href = url, 300);
-  } else {
-    window.location.href = url;
-  }
+  const mainContent = document.querySelector(".main-content");
+  const projectsContent = document.querySelector(".projects-content");
+  
+  // Remover fade-in da página atual
+  if (main) main.classList.remove("fade-in");
+  if (mainContent) mainContent.classList.remove("fade-in");
+  if (projectsContent) projectsContent.classList.remove("fade-in");
+  
+  // Aguardar animação de saída antes de redirecionar
+  setTimeout(() => window.location.href = url, 300);
 }
 
 function toggleAudio() {
@@ -59,10 +63,11 @@ window.onload = () => {
   const mainContent = document.querySelector(".main-content");
   const projectsContent = document.querySelector(".projects-content");
   
+  // Adicionar fade-in aos elementos de conteúdo
   if (main) main.classList.add("fade-in");
   if (mainContent) mainContent.classList.add("fade-in");
   if (projectsContent) projectsContent.classList.add("fade-in");
 
-  // Inicializar áudio - comçar a tocar automaticamente
+  // Inicializar áudio - começar a tocar automaticamente
   setTimeout(() => autoplayAudio(), 100);
 };
